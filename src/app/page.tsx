@@ -3,13 +3,20 @@ import Image from 'next/image';
 import { allPosts } from 'contentlayer/generated';
 
 import { Mdx } from '@/components/Mdx';
+import { PostCard } from '@/components/PostCard';
+import { Grid } from '@/components/Grid';
 
 export default function Home() {
-  const posts = allPosts.map((post) => post);
+  const posts = allPosts;
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h2>Hellor worldd</h2>
-      <div></div>
+    <main>
+      <div>
+        <Grid>
+          {posts.map((post) => (
+            <PostCard key={post._id} />
+          ))}
+        </Grid>
+      </div>
     </main>
   );
 }
