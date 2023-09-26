@@ -1,4 +1,6 @@
 import { Header } from '@/components/Header';
+import { Layout } from '@/components/Layout';
+import { headerConfig } from '@/config';
 import '@/styles/globals.css';
 
 export const metadata = {
@@ -14,9 +16,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-gray-700 text-gray-100">
-        <Header />
+        <Header items={headerConfig} />
 
-        {children}
+        <Layout>
+          <div className="pt-20">{children}</div>
+        </Layout>
       </body>
     </html>
   );
