@@ -1,21 +1,26 @@
 import Link from 'next/link';
 
 import * as S from './styles';
+import { Logo } from '../Logo';
+import { HeaderNav } from '@/types';
 
-export const Header = () => {
+type HeaderProps = {
+  items: HeaderNav;
+};
+
+export const Header = ({ items }: HeaderProps) => {
   return (
     <S.Container>
       <S.Content>
-        <div>Logo</div>
+        <Logo />
 
         <S.Nav>
           <S.List>
-            <S.ListItem>
-              <Link href="/">Home</Link>
-            </S.ListItem>
-            <S.ListItem>
-              <Link href="/articles">Articles</Link>
-            </S.ListItem>
+            {items.mainNav.map((item) => (
+              <S.ListItem key={item.title}>
+                <Link href={item.href}>{item.title}</Link>
+              </S.ListItem>
+            ))}
           </S.List>
         </S.Nav>
       </S.Content>
