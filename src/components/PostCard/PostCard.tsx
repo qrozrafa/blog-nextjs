@@ -1,13 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { Tag } from '@/components/Tag';
+import { BlogPost } from '@/models';
 
-export function PostCard() {
+type PostCardProps = {
+  post: BlogPost;
+};
+
+export function PostCard({ post }: PostCardProps) {
+  const { body, frontmatter, readingTime, slug } = post;
+  const { title, tags, description, date, image } = frontmatter;
   return (
     <>
-      <Link href={'#'}>
+      <Link href={slug}>
         <div className="relative h-80 w-full">
           <Image
-            src="/assets/images/image.png"
+            src={image}
             alt=""
             fill
             priority
@@ -17,25 +25,16 @@ export function PostCard() {
         <div className="pt-3">
           <div className="mb-3 flex flex-wrap gap-2">
             {['TS', 'JS', 'React'].map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full bg-gray-800 px-4 py-2 text-sm font-medium text-gray-400 hover:bg-gray-500 hover:text-gray-800"
-              >
-                {tag}
-              </span>
+              <Tag key={tag}>{tag}</Tag>
             ))}
           </div>
           <time className="text-gray-400">
-            15 de maio de 2023 - 3 minutos de leitura
+            15 de maio de 2023 - {readingTime} minutos de leitura
           </time>
           <p className="mt-2 max-w-md text-ellipsis text-2xl font-medium text-gray-50">
-            O que estou estudando next.js?
+            {title}
           </p>
-          <p className="mt-3 text-gray-400">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Doloremque, necessitatibus. Nesciunt mollitia error quam distinctio
-            dignissimos.
-          </p>
+          <p className="mt-3 text-gray-400">{description}</p>
         </div>
       </Link>
     </>

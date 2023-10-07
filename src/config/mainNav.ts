@@ -1,6 +1,6 @@
-import { HeaderNav } from '@/types';
+import { MainNavType } from '@/models';
 
-export const headerConfig: HeaderNav = {
+export const mainNavConfig: MainNavType = {
   mainNav: [
     {
       title: 'Home',

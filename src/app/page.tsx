@@ -1,22 +1,24 @@
-import Image from 'next/image';
-
-import { allPosts } from 'contentlayer/generated';
-
-import { Mdx } from '@/components/Mdx';
 import { PostCard } from '@/components/PostCard';
 import { Grid } from '@/components/Grid';
 
+import { siteConfig } from '@/config';
+import { Profile } from '@/components/Profile';
+import { PostService } from '@/services';
+
 export default function Home() {
-  const posts = allPosts;
+  const { posts } = PostService.getAll();
+
   return (
     <main>
-      <div>
-        <Grid>
-          {posts.map((post) => (
-            <PostCard key={post._id} />
-          ))}
-        </Grid>
+      <div className="my-6">
+        <Profile items={siteConfig} />
       </div>
+
+      <Grid>
+        {posts.map((post) => (
+          <PostCard key={post.slug} post={post} />
+        ))}
+      </Grid>
     </main>
   );
 }

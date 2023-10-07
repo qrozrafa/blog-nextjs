@@ -1,28 +1,16 @@
-import Link from 'next/link';
-
 import * as S from './styles';
-import { Logo } from '../Logo';
-import { HeaderNav } from '@/types';
+import { Logo } from '@/components/Logo';
 
 type HeaderProps = {
-  items: HeaderNav;
+  children: React.ReactNode;
 };
 
-export const Header = ({ items }: HeaderProps) => {
+export const Header = ({ children }: HeaderProps) => {
   return (
     <S.Container>
       <S.Content>
         <Logo />
-
-        <S.Nav>
-          <S.List>
-            {items.mainNav.map((item) => (
-              <S.ListItem key={item.title}>
-                <Link href={item.href}>{item.title}</Link>
-              </S.ListItem>
-            ))}
-          </S.List>
-        </S.Nav>
+        {children}
       </S.Content>
     </S.Container>
   );

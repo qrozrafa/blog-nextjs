@@ -1,6 +1,9 @@
+import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Layout } from '@/components/Layout';
-import { headerConfig } from '@/config';
+import { MainNav } from '@/components/MainNav';
+import { mainNavConfig } from '@/config';
+
 import '@/styles/globals.css';
 
 export const metadata = {
@@ -16,11 +19,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-gray-700 text-gray-100">
-        <Header items={headerConfig} />
+        <Header>
+          <MainNav items={mainNavConfig.mainNav} />
+        </Header>
 
         <Layout>
-          <div className="pt-20">{children}</div>
+          <div className="py-20">{children}</div>
         </Layout>
+
+        <Footer items={mainNavConfig.mainNav} />
       </body>
     </html>
   );
