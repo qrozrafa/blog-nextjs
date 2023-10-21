@@ -1,3 +1,4 @@
+import { BackToTop } from '@/components/BackToTop';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Layout } from '@/components/Layout';
@@ -17,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className="bg-gray-700 text-gray-100">
         <Header>
           <MainNav items={mainNavConfig.mainNav} />
@@ -28,6 +29,8 @@ export default function RootLayout({
         </Layout>
 
         <Footer items={mainNavConfig.mainNav} />
+
+        <BackToTop />
       </body>
     </html>
   );

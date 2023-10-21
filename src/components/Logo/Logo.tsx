@@ -1,7 +1,9 @@
+import Link from 'next/link';
+
 export function Logo() {
   return (
-    <div>
-      <h2>Logo</h2>
-    </div>
+    <Link href="/">
+      <h2 className="text-xl font-bold text-link">Logo</h2>
+    </Link>
   );
 }
