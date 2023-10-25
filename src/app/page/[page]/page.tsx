@@ -1,21 +1,28 @@
-import { siteConfig } from '@/config';
-import { Profile } from '@/components/Profile';
+// import { paginationPages } from '@/function';
 import { PostService } from '@/services';
+
 import { Pagination } from '@/components/Pagination';
 import { PostsList } from '@/components/PostsList';
+import { BackButton } from '@/components/Post/components';
 import { paginationPages } from '@/function';
 
-export default function Home() {
-  const { posts, currentPage, numbPages } = PostService.getAll();
+export default function Page({ params }: { params: { page: string } }) {
+  const currentPage = +params.page;
 
+  const { posts, numbPages } = PostService.getAll({ currentPage });
   const { prevPage, nextPage } = paginationPages(currentPage);
 
-  return (
-    <main>
-      <div className="my-6">
-        <Profile items={siteConfig} />
+  if (!posts.length) {
+    return (
+      <div>
+        <h2>Não há posts</h2>
+        <BackButton />
       </div>
+    );
+  }
 
+  return (
+    <>
       <PostsList posts={posts} />
 
       <Pagination
@@ -24,6 +31,6 @@ export default function Home() {
         prevPage={prevPage}
         nextPage={nextPage}
       />
-    </main>
+    </>
   );
 }

@@ -1,8 +1,11 @@
 import NextImage from 'next/image';
 import NextLink from 'next/link';
 import tw from 'tailwind-styled-components';
+import { PostCardProps } from './PostCard';
 
-export const Link = tw(NextLink)`
+type LinkProps = Pick<PostCardProps, 'isMain'>;
+
+export const Link = tw(NextLink)<LinkProps>`
   hover:border-link
   w-full
   rounded-lg
@@ -11,6 +14,12 @@ export const Link = tw(NextLink)`
   transition-colors
   duration-300
   p-3
+  flex
+  flex-col
+
+  ${({ isMain }) => `
+    ${isMain && `lg:flex-row mb-3`}
+  `}
 `;
 
 export const ImageContainer = tw.div`
