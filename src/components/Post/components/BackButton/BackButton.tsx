@@ -1,12 +1,18 @@
 import * as S from './styles';
 
-export function BackButton() {
+type BackButtonProps = {
+  textInfo?: string;
+};
+
+export function BackButton({
+  textInfo = 'Voltar à listagem'
+}: BackButtonProps) {
   return (
-    <S.Link href="/" className="">
-      <S.IconContainer className="">
+    <S.Link href="/">
+      <S.IconContainer>
         <S.Icon size={20} />
       </S.IconContainer>
-      <S.Text>Voltar à listagem</S.Text>
+      <S.Text>{textInfo}</S.Text>
     </S.Link>
   );
 }

@@ -1,6 +1,7 @@
+'use client';
 import { formatDate } from '@/function';
 import { BlogPost } from '@/models';
-import Image from 'next/image';
+
 import { Mdx } from '../Mdx';
 import * as S from './styles';
 import { BackButton } from './components';

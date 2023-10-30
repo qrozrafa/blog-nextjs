@@ -1,5 +1,31 @@
+import type { Metadata } from 'next';
 import { Link } from '@/components/Link';
 import * as S from './styles';
+import { siteConfig } from '@/config';
+
+export const metadata: Metadata = {
+  title: 'Sobre mim',
+  description: 'Sobre mim',
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    type: 'website',
+    title: 'Sobre mim',
+    url: '/about',
+    description: 'Sobre mim',
+    siteName: 'Sobre mim',
+    images: [
+      {
+        url: '/profile.jpg'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Sobre mim',
+    description: 'Sobre mim',
+    images: [`/profile.jpg`]
+  }
+};
 
 export default function AboutPage() {
   return (
